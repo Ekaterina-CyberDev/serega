@@ -1,0 +1,44 @@
+[
+  {
+    "id": "1",
+    "type": "text",
+    "date": "2024-12-20",
+    "content": "Тогда ты сказал, что я твой самый лучший друг ❤️",
+    "reaction": "Этот момент я запомню навсегда!",
+    "file_id": null
+  },
+  {
+    "id": "2",
+    "type": "text",
+    "date": "2024-12-25",
+    "content": "Рождественская переписка, где мы смеялись до утра 🎄",
+    "reaction": "Та счастливая ночь была волшебной ✨",
+    "file_id": null
+  },
+  {
+    "id": "20260610_021514_2767",
+    "date": "2026-06-09",
+    "time": "23:15:15",
+    "from_user": "Катюша",
+    "username": "katenok_a",
+    "reaction": "Автоматически сохранённый момент ✨",
+    "file_id": null,
+    "file_path": null,
+    "added_at": "2026-06-10 02:15:14",
+    "type": "text",
+    "content": "Н"
+  },
+  {
+    "id": "20260610_022519_8470",
+    "date": "2026-06-09",
+    "time": "23:25:20",
+    "from_user": "Катюша",
+    "username": "katenok_a",
+    "reaction": "Автоматически сохранённый момент ✨",
+    "file_id": "AgACAgIAAyEFAATlgoFhAAMLaiig4K3eI8LZy586hAUN9QODMTIAArAaaxtFCEhJ5Fw-jHa0PnUBAAMCAAN5AAM7BA",
+    "file_path": "memories_media\\photos\\20260610_022519_8470.jpg",
+    "added_at": "2026-06-10 02:25:19",
+    "type": "photo",
+    "content": "пр"
+  }
+]
