@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>С Днём Рождения! 🎂</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .surprise-btn {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, #ff6b6b, #ff0000);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            transition: transform 0.2s;
+            font-size: 24px;
+            color: white;
+            font-weight: bold;
+            position: relative;
+            z-index: 10;
+        }
+
+        .surprise-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .surprise-btn:active {
+            transform: scale(0.95);
+        }
+
+        .hidden-message {
+            display: none;
+            margin-top: 40px;
+            padding: 30px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hidden-message.show {
+            display: block;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: #f00;
+            position: absolute;
+            animation: explode 0.6s ease-out forwards;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        @keyframes explode {
+            0% {
+                opacity: 1;
+                transform: translate(0, 0) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(var(--tx), var(--ty)) scale(0);
+            }
+        }
+
+        h1 {
+            color: #764ba2;
+            margin-bottom: 15px;
+        }
+
+        p {
+            color: #555;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        .balloon {
+            position: fixed;
+            bottom: -100px;
+            animation: float 8s ease-in infinite;
+            pointer-events: none;
+            font-size: 40px;
+        }
+
+        @keyframes float {
+            0% {
+                bottom: -100px;
+                opacity: 1;
+            }
+            100% {
+                bottom: 100vh;
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button class="surprise-btn" id="surpriseBtn">
+            🎁<br>
+            Не нажимай<br>
+            на меня!
+        </button>
+        
+        <div class="hidden-message" id="messageBox">
+            <h1>Так так так, это кто тут у нас?</h1>
+            <p>эй, там же было написано не нажимай. Ну как так</p>
+            <p style="margin-top: 20px; font-size: 30px;">🎂 🎈 🎁 🍰 🎉</p>
+        </div>
+    </div>
+
+    <script>
+        const btn = document.getElementById('surpriseBtn');
+        const messageBox = document.getElementById('messageBox');
+
+        function createConfetti(x, y) {
+            const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff', '#ffa500', '#ff69b4'];
+            for (let i = 0; i < 150; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+                const angle = Math.random() * Math.PI * 2;
+                const distance = 100 + Math.random() * 200;
+                const tx = Math.cos(angle) * distance;
+                const ty = Math.sin(angle) * distance;
+                confetti.style.setProperty('--tx', tx + 'px');
+                confetti.style.setProperty('--ty', ty + 'px');
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.left = (x - 5) + 'px';
+                confetti.style.top = (y - 5) + 'px';
+                document.body.appendChild(confetti);
+                
+                setTimeout(() => confetti.remove(), 600);
+            }
+        }
+
+        function createBalloons() {
+            for (let i = 0; i < 20; i++) {
+                const balloon = document.createElement('div');
+                balloon.classList.add('balloon');
+                const emojis = ['🎈', '🎉', '🎂', '🎁', '🎊', '🎈', '❤️', '💖', '🎈'];
+                balloon.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                balloon.style.left = Math.random() * 100 + '%';
+                balloon.style.animationDelay = Math.random() * 5 + 's';
+                balloon.style.animationDuration = 6 + Math.random() * 4 + 's';
+                balloon.style.fontSize = (30 + Math.random() * 40) + 'px';
+                document.body.appendChild(balloon);
+                
+                setTimeout(() => balloon.remove(), 10000);
+            }
+        }
+
+        btn.addEventListener('click', (e) => {
+            const rect = btn.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+            
+            createConfetti(centerX, centerY);
+            createBalloons();
+            
+            btn.style.opacity = '0';
+            btn.style.transform = 'scale(0)';
+            setTimeout(() => {
+                btn.style.display = 'none';
+                messageBox.classList.add('show');
+            }, 300);
+        });
+    </script>
+</body>
+</html>
